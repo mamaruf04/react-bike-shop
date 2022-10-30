@@ -18,7 +18,7 @@ const Header = () => {
                         <input className='input' placeholder='Search' type="text" />
                         <img className='search-icon' width={'20px'} src={searchIcon} alt="" />
                     </div>
-                    <img width={'35px'} src={cartIcon} alt="" />
+                    <img  width={'35px'} src={cartIcon} alt="" />
                     <img width={'30px'} src={menuIcon} alt="" />
                 </div>
             </nav>

@@ -6,17 +6,25 @@ const Shop = () => {
 
     const [products,setProducts] = useState([]);
     const [cart,setCart] = useState([]);
-
     useEffect(()=>{
         fetch('products.json')
         .then(res => res.json())
         .then(data=> setProducts(data))
     },[])
 
+    let qty = 1;
     const handelAddToCart = (product) =>{
-
-        const newCart = [...cart, product];
-        setCart(newCart);
+        if (cart.includes(product)) {
+            qty++;
+        }else{
+            const newCart = [...cart, product];
+            setCart(newCart);
+        }
+    }
+    console.log(qty);
+    const dltItem = (removeItem) =>{
+        const filter = cart.filter((carts)=> carts.id !== removeItem);
+        setCart(filter)
     }
 
     return (
@@ -24,12 +32,12 @@ const Shop = () => {
             <div className='products-container'>
                 {
                     products.map(product=>
-                        <Product key={product.id} product= {product} handelAddToCart = {handelAddToCart}></Product>
+                        <Product key={product.id} product= {product} handelAddToCart = {handelAddToCart} ></Product>
                     )
                 }
             </div>
             <div>
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart} quantity = {qty} dltItem = {dltItem}></Cart>
             </div>
         </div>
     );

@@ -1,10 +1,10 @@
 .product {
   width: 280px;
   height: 480px;
-  border: 1px solid #473889;
+  /* border: 1px solid #473889; */
   border-radius: 10px;
   position: relative;
-  background-color: #eff9ff;
+  background-color: rgb(255, 255, 255);
 }
 .product-info {
   padding: 0 10px;
@@ -24,10 +24,10 @@
   border: none;
   border-radius: 0 0 10px 10px;
   padding: 12px;
-  background-color: #473889;
+  background-color: #5045ad;
   font-size: 18px;
   color: #ffffff;
 }
 .product-btn:hover {
-  background-color: #675dbf;
+  background-color: rgba(52, 40, 105, 1);
 }
