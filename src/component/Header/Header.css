@@ -1,0 +1,30 @@
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.input-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  top: 1;
+  right: 0;
+}
+.input {
+  border: none;
+  box-shadow: 0px 0px 10px #e9e4fe;
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #473889;
+  font-size: 16px;
+}
