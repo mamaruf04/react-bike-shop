@@ -1,0 +1,19 @@
+.cart {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  gap: 20px;
+  height: 100vh;
+  padding: 15px;
+  position: sticky;
+  top: 0;
+}
+.summary {
+  background-color: coral;
+  border-radius: 10px;
+  padding: 10px;
+}
+.add-products {
+  background-color: blueviolet;
+  border-radius: 10px;
+  padding: 10px;
+}
