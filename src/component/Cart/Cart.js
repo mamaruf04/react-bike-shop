@@ -2,8 +2,8 @@ import React from 'react';
 import dltIcon from '../../asset/delete-2.svg';
 import './Cart.css';
 const Cart = (props) => {
-    const {dltItem, cart , quantity} = props;
-    console.log(props);
+    const {dltItem, cart} = props;
+    
     let total = 0;
     let shipping = 0;
     for(const product of cart){
@@ -12,7 +12,11 @@ const Cart = (props) => {
     }
     let tax = parseFloat((total * 0.1).toFixed(2));
     let grandTotal = total + shipping + tax;
-    
+
+
+    const quantity = JSON.parse(localStorage.getItem('shoppingCart'));
+
+
     return (
         <div className='cart'>
             <div className='summary'>
@@ -32,7 +36,7 @@ const Cart = (props) => {
                             <div>
                                 <h5>{cartItem.name}</h5>
                                 <p>Price: ${cartItem.price}</p>
-                                <p>Quantity: {quantity}</p>
+                                <p>Quantity: {quantity[cartItem.id]}</p>
                             </div>
                             <img onClick={() => dltItem(cartItem.id)} className='dlt-icon' src={dltIcon} alt="" />
                         </div>
