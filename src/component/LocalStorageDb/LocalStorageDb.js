@@ -23,4 +23,16 @@ const LocalStorageDb = (isIncrease , id) => {
     localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
 };
 
-export default LocalStorageDb;
+// load data from local storage
+
+const getFromLocal = () => {
+    let shoppingCart = {};
+    const storedCart = localStorage.getItem('shoppingCart');
+    if (storedCart) {
+        shoppingCart = JSON.parse(storedCart);
+    }
+    return shoppingCart;
+}
+
+export { LocalStorageDb, getFromLocal };
+

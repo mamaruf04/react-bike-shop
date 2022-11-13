@@ -3,19 +3,19 @@ import dltIcon from '../../asset/delete-2.svg';
 import './Cart.css';
 const Cart = (props) => {
     const {dltItem, cart} = props;
-    
+
+    const quantity = JSON.parse(localStorage.getItem('shoppingCart'));
+ 
     let total = 0;
     let shipping = 0;
+    let totalQuantity = 0;
     for(const product of cart){
-        total = total + product.price;
+        totalQuantity = quantity[product.id]
+        total = total + (product.price) * totalQuantity;
         shipping = shipping + product.shipping;
     }
     let tax = parseFloat((total * 0.1).toFixed(2));
     let grandTotal = total + shipping + tax;
-
-
-    const quantity = JSON.parse(localStorage.getItem('shoppingCart'));
-
 
     return (
         <div className='cart'>

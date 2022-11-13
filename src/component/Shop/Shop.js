@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
-import LocalStorageDb from '../LocalStorageDb/LocalStorageDb';
+import { getFromLocal, LocalStorageDb } from '../LocalStorageDb/LocalStorageDb';
 import Product from '../Product/Product';
 import './Shop.css';
 
@@ -12,6 +12,23 @@ const Shop = () => {
         .then(res => res.json())
         .then(data=> setProducts(data))
     },[])
+
+    // load cart from local storage
+    useEffect(()=>{
+        const loadData = getFromLocal();
+        // console.log(loadData);
+        const addedCart = [];
+        for(const id in loadData){
+            const storedCart = products.find(product => product.id === id);
+            if(storedCart){
+                const quantity = loadData[id];
+                storedCart.quantity = quantity; 
+                addedCart.push(storedCart); 
+            }
+        setCart(addedCart); 
+        }
+    },[products])
+
 
     const handelAddToCart = (product) =>{
         LocalStorageDb(true, product.id);
@@ -38,6 +55,8 @@ const Shop = () => {
         localStorage.setItem('shoppingCart', JSON.stringify(storedCart))
          
     }
+
+    
     return (
         <div className='container'>
             <div className='products-container'>
