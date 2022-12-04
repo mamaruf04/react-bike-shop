@@ -16,14 +16,23 @@
   color: rgba(52, 40, 105, 1);
 }
 .add-products {
-  /* background-color: blueviolet; */
   border-radius: 10px;
   padding: 10px;
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   overflow-y: scroll;
   scroll-behavior: smooth;
   background-color: rgb(255, 255, 255);
 }
+/* .empty-cart {
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  background-image: url("https://www.getillustrations.com/packs/matilda-startup-illustrations/scenes/_1x/shopping,%20e-commerce%20_%20empty,%20shopping%20cart,%20items,%20products,%20zero,%20none_md.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+} */
 .cart-item {
   background-color: #e9e4fe;
   color: rgba(52, 40, 105, 1);

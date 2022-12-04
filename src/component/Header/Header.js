@@ -1,9 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import cartIcon from '../../asset/cart.svg';
 import logo from '../../asset/logo.svg';
 import menuIcon from '../../asset/menu-2.svg';
 import searchIcon from '../../asset/search.svg';
-import Shop from '../Shop/Shop';
 
 import './Header.css';
 const Header = () => {
@@ -18,11 +18,12 @@ const Header = () => {
                         <input className='input' placeholder='Search' type="text" />
                         <img className='search-icon' width={'20px'} src={searchIcon} alt="" />
                     </div>
-                    <img  width={'35px'} src={cartIcon} alt="" />
+                    <Link to ='/order'> 
+                        <img  width={'35px'} src={cartIcon} alt="" />
+                    </Link>
                     <img width={'30px'} src={menuIcon} alt="" />
                 </div>
             </nav>
-            <Shop></Shop>
         </>
     );
 };
