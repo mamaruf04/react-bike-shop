@@ -1,0 +1,5 @@
+.cart-review {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+}

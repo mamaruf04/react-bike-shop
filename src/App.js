@@ -13,11 +13,17 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/productDetail" element={<ProductDetail></ProductDetail>}>
-          <Route path=':productId' element={<ProductDetail></ProductDetail>}></Route>
+          <Route
+            path=":productId"
+            element={<ProductDetail></ProductDetail>}
+          ></Route>
         </Route>
         <Route path="/" element={<Shop></Shop>}></Route>
         <Route path="/cart" element={<Cart></Cart>}></Route>
-        <Route path='/order' element={<Order></Order>}></Route>
+        <Route path="/order/" element={<Order></Order>}>
+          <Route path='/order/productDetail/:productId' element={<ProductDetail></ProductDetail>}></Route>
+        </Route>
+        <Route path='/productDetails/:productId' element={<ProductDetail></ProductDetail>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
     </div>

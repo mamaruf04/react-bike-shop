@@ -30,3 +30,6 @@
   color: #473889;
   font-size: 16px;
 }
+.search-icon {
+  cursor: pointer;
+}

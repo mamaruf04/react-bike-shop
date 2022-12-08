@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import Cart from '../Cart/Cart';
@@ -63,7 +64,7 @@ const Shop = () => {
     return (
       <div className="container">
         <div className="products-container">
-          {products.slice(0,5).map((product) => (
+          {products.map((product) => (
             <Product
               key={product.id}
               product={product}
@@ -72,7 +73,11 @@ const Shop = () => {
           ))}
         </div>
         <div>
-          <Cart key={cart} cart={cart} dltItem={dltItem}></Cart>
+          <Cart key={cart} cart={cart} dltItem={dltItem}>
+            <Link to={'/order'}>
+              <button>Review Order</button>
+            </Link>
+          </Cart>
         </div>
       </div>
     );

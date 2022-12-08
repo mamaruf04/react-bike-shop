@@ -1,8 +1,11 @@
 .cart {
-  display: grid;
-  grid-template-rows: 1fr 2fr;
+  /* display: grid;
+  grid-template-rows: 1fr 2fr; */
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  height: 100vh;
+  height: 500px;
+  width: fit-content;
   padding: 15px;
   position: sticky;
   top: 0;
@@ -18,21 +21,16 @@
 .add-products {
   border-radius: 10px;
   padding: 10px;
-  width: 100%;
-  max-width: 600px;
+  width: 300px;
   margin: 0 auto;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
   background-color: rgb(255, 255, 255);
 }
-/* .empty-cart {
-  border-radius: 10px;
+.empty-cart {
+  margin-top: 5px;
+  text-align: center;
   padding: 10px;
-  width: 100%;
-  background-image: url("https://www.getillustrations.com/packs/matilda-startup-illustrations/scenes/_1x/shopping,%20e-commerce%20_%20empty,%20shopping%20cart,%20items,%20products,%20zero,%20none_md.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-} */
+  color: rgba(52, 40, 105, 1);
+}
 .cart-item {
   background-color: #e9e4fe;
   color: rgba(52, 40, 105, 1);
@@ -45,6 +43,12 @@
   gap: 10px;
   position: relative;
 }
+.cart-products {
+  height: 500px;
+  /* width: 100%; */
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
 .cart-img {
   width: 50px;
   border-radius: 50px;
@@ -53,7 +57,7 @@
 .dlt-icon {
   width: 20px;
   position: absolute;
-  /* top: 0; */
   right: 0;
   margin-right: 8px;
+  cursor: pointer;
 }
