@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import addToCartIcon from "../../asset/Add-to-cart.svg";
 import ProductDetail from "../ProductDetail/ProductDetail";
 import "./Product.css";
+
 const Product = ({ product, handelAddToCart }) => {
   const { id, name, img, price, ratings, stock } = product;
 

@@ -16,7 +16,7 @@ const Order = () => {
             <button>Processed to checkout</button>
           </Link>
         </Cart>
-        <ProductDetail>{cart}</ProductDetail>
+        <ProductDetail></ProductDetail>
       </div>
     );
 };

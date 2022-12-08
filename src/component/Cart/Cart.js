@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import dltIcon from '../../asset/delete-2.svg';
-// import emptyCart from '../'
 import './Cart.css';
+
 const Cart = ({dltItem, cart, children}) => {
  
     let total = 0;
@@ -19,7 +19,6 @@ const Cart = ({dltItem, cart, children}) => {
     }
     let tax = parseFloat((total * 0.1).toFixed(2));
     let grandTotal = total + shipping + tax; 
-
     return (
       <div className="cart">
         <div className="summary">
@@ -62,7 +61,7 @@ const Cart = ({dltItem, cart, children}) => {
                   <img className="cart-img" src={cartItem.img} alt="img" />
                   <Link
                     className="link-style"
-                    to={"productDetail/" + cartItem.id}
+                    to={'ProductDetail/'+cartItem.id}
                   >
                     <div>
                       <h5>{cartItem.name}</h5>

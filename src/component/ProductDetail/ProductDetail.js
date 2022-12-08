@@ -1,29 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import ReactStars from 'react-rating-stars-component';
 import { useParams } from 'react-router-dom';
+import { CartContext } from '../../App';
 import selectProductImg from '../../asset/selectProduct-removebg.png';
-// import useCart from '../../hooks/useCart';
-// import useProducts from '../../hooks/useProducts';
 import './ProductDetail.css';
 
-const ProductDetail = ({children}) => {
+const ProductDetail = () => {
   const {productId} = useParams();
 
-  // const [products,setProducts] = useProducts();
-  // const [cart, setCart] = useCart(products);
-    const selectedCart = children?.find((addedCart) => addedCart.id === productId);
+  const [addedCart] = useContext(CartContext);
+  
+    const selectedCart = addedCart?.find(
+      (addedCart) => addedCart.id === productId
+    );
 
-    // const firstExample = {
-    //   size: 30,
-    //   value: selectedCart?.ratings,
-    //   isHalf: true,
-    //   edit: false,
-    // };
-    // console.log(cart);
 
   return (
     <div>
-      {selectedCart?.img ? (
+      {selectedCart ? (
         <div className="selected-product">
           <h1 className="product-title">{selectedCart?.name}</h1>
           <div className="product-detail">
@@ -51,7 +45,7 @@ const ProductDetail = ({children}) => {
           </div>
         </div>
       ) : (
-        <div className="">
+        <div className="empty-product-details-warning">
           <img
             className="add-product-img"
             src={selectProductImg}

@@ -18,15 +18,16 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  padding: 10px;
+  margin-bottom: 20px;
   color: rgba(52, 40, 105, 1);
+}
+.empty-product-details-warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .add-product-img {
   width: 500px;
-  padding-left: 100px;
-  /* height: 500px; */
-  border-radius: 10px;
-  /* border: 1px dashed gray; */
 }
 .selected-product-info {
   justify-self: center;
