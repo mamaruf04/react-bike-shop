@@ -27,6 +27,12 @@ const Header = () => {
           </div>
           <NavLink
             className={({ isActive }) => (isActive ? "active-link" : "link")}
+            to={"/registration"}
+          >
+            Registration
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "active-link" : "link")}
             to={"/order"}
           >
             <img width={"35px"} src={cartIcon} alt="" />

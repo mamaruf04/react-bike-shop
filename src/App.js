@@ -1,6 +1,8 @@
 import { createContext, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Login from './component/Accounts/Login/Login';
+import Register from './component/Accounts/Register/Register';
 import Cart from './component/Cart/Cart';
 import Header from './component/Header/Header';
 import NotFound from './component/NotFound/NotFound';
@@ -43,6 +45,8 @@ function App() {
             path="/productDetails/:productId"
             element={<ProductDetail></ProductDetail>}
           ></Route>
+          <Route path='/registration' element={<Register></Register>}></Route>
+          <Route path='/login' element={<Login></Login>}></Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
       </CartContext.Provider>

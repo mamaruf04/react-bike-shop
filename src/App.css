@@ -1,5 +1,7 @@
 body {
-  background-color: rgba(229, 247, 255, 1);
+  /* background-color: rgba(229, 247, 255, 1); */
+  /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+  background: linear-gradient(90deg, #c5e8ff, #ebbffd);
 }
 .App-logo {
   height: 40vmin;
