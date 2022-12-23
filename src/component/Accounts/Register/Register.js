@@ -1,17 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {
+    useCreateUserWithEmailAndPassword,
+    useUpdateProfile
+} from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../../firebase.init";
 import "../AccountFormStyle/AccountFormStyle.css";
+
 const Register = () => {
+  const [displayName, setDisplayName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  // register
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  // update profile
+  const [updateProfile, updating] = useUpdateProfile(auth);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(email, password);
+  };
+
+  useEffect(() => {
+    const update = () => {
+      updateProfile({ displayName });
+    };
+    if (!loading) {
+      update();
+    }
+  }, [displayName, loading, updateProfile]);
+
   return (
     <div className="account-section">
       <div className="account-container">
         <div className="account-title">Registration</div>
         <div className="content">
-          <form action="#">
+          <form onSubmit={handleSubmit}>
             <div className="user-details">
               <div className="input-box">
                 <span className="details">Full Name</span>
                 <input
+                  onBlur={(e) => setDisplayName(e.target.value)}
                   type="text"
                   placeholder="Enter your name"
                   required
@@ -28,6 +62,7 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Email</span>
                 <input
+                  onBlur={(e) => setEmail(e.target.value)}
                   type="text"
                   placeholder="Enter your email"
                   required
@@ -37,7 +72,8 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Password</span>
                 <input
-                  type="text"
+                  onBlur={(e) => setPassword(e.target.value)}
+                  type="password"
                   placeholder="Enter your password"
                   required
                 ></input>
@@ -45,7 +81,8 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Confirm Password</span>
                 <input
-                  type="text"
+                  onBlur={(e) => setConfirmPassword(e.target.value)}
+                  type="password"
                   placeholder="Confirm your password"
                   required
                 ></input>
@@ -55,9 +92,9 @@ const Register = () => {
                   Phone Number <small>(optional)</small>
                 </span>
                 <input
+                  onBlur={(e) => setPhoneNumber(e.target.value)}
                   type="number"
                   placeholder="Enter your number"
-                  required
                 ></input>
               </div>
             </div>
@@ -89,10 +126,8 @@ const Register = () => {
             Already have an account? <Link to="/login">Login</Link>
           </p>
           <p className="condition-warning">
-            
-              By continuing, you agree to our <Link to="#">Terms of Service</Link>.
-               Read our <Link to="#">Privacy Policy</Link>.
-            
+            By continuing, you agree to our <Link to="#">Terms of Service</Link>
+            . Read our <Link to="#">Privacy Policy</Link>.
           </p>
         </div>
       </div>

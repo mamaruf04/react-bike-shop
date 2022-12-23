@@ -1,12 +1,22 @@
 import React from "react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { NavLink } from "react-router-dom";
 import cartIcon from "../../asset/cart.svg";
 import logo from "../../asset/logo.svg";
 import menuIcon from "../../asset/menu-2.svg";
 import searchIcon from "../../asset/search.svg";
-
+import auth from "../../firebase.init";
 import "./Header.css";
+
+
 const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const [signOut] = useSignOut(auth);
+  console.log(user);
+
+  const handleSignOut = () =>{
+    signOut(auth);
+  }
   return (
     <>
       <nav className="nav-bar">
@@ -25,12 +35,17 @@ const Header = () => {
               alt=""
             />
           </div>
-          <NavLink
-            className={({ isActive }) => (isActive ? "active-link" : "link")}
-            to={"/registration"}
-          >
-            Registration
-          </NavLink>
+          {user ? <p>user: {user.displayName}</p> : ""}
+          {loading ? <p>Loading...</p> : ""}
+          {!user && (
+            <NavLink
+              className={({ isActive }) => (isActive ? "active-link" : "link")}
+              to={"/registration"}
+            >
+              <button>Register</button>
+            </NavLink>
+          )}
+          {user && <button onClick={handleSignOut}>Sign Out</button>}
           <NavLink
             className={({ isActive }) => (isActive ? "active-link" : "link")}
             to={"/order"}

@@ -1,13 +1,15 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import addToCartIcon from "../../asset/Add-to-cart.svg";
+import auth from "../../firebase.init";
 import ProductDetail from "../ProductDetail/ProductDetail";
 import "./Product.css";
 
 const Product = ({ product, handelAddToCart }) => {
   const { id, name, img, price, ratings, stock } = product;
-
+const [user, loading, error] = useAuthState(auth);
   return (
     <>
       <div className="product">
@@ -26,6 +28,7 @@ const Product = ({ product, handelAddToCart }) => {
           <p>
             <b>Stock:</b> {stock}
           </p>
+          {user ? <p>user: {user?.displayName}</p> : ""}
           <ReactStars
             {...{
               size: 24,
@@ -33,7 +36,7 @@ const Product = ({ product, handelAddToCart }) => {
               isHalf: true,
               edit: false,
               color: "#333332",
-              activeColor: "#EEA807"
+              activeColor: "#EEA807",
             }}
           />
         </div>
