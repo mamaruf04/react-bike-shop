@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
-    useCreateUserWithEmailAndPassword,
-    useUpdateProfile
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile
 } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Loading from '../../Loading/Loading';
 import "../AccountFormStyle/AccountFormStyle.css";
 
 const Register = () => {
@@ -121,6 +122,7 @@ const Register = () => {
             <div className="button">
               <input type="submit" value="Register"></input>
             </div>
+            {loading && <Loading></Loading>}
           </form>
           <p className="toggle">
             Already have an account? <Link to="/login">Login</Link>
