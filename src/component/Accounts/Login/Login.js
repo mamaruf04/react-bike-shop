@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  useSendPasswordResetEmail, useSignInWithEmailAndPassword
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword
 } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "../../Loading/Loading";
 import "../AccountFormStyle/AccountFormStyle.css";
@@ -15,11 +16,23 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(email, password);
   };
+
+  // const emailPattern = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [from, user, navigate]);
 
   return (
     <div className="account-section">
@@ -32,7 +45,8 @@ const Login = () => {
                 <span className="details">Email</span>
                 <input
                   onBlur={(e) => setEmail(e.target.value)}
-                  type="text"
+                  type="email"
+                  pattern="^[^@\s]+@[^@\s]+\.[^@\s]+"
                   placeholder="Enter your email"
                   required
                 ></input>
@@ -41,7 +55,7 @@ const Login = () => {
                 <span className="details">Password</span>
                 <input
                   onBlur={(e) => setPassword(e.target.value)}
-                  type="text"
+                  type="password"
                   placeholder="Enter your password"
                   required
                 ></input>

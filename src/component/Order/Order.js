@@ -12,8 +12,8 @@ const Order = () => {
     return (
       <div className="cart-review">
         <Cart cart={cart} dltItem={dltItem}>
-          <Link to={"/"}>
-            <button>Processed to checkout</button>
+          <Link to={"/shipment"}>
+            <button>Processed to Shipping</button>
           </Link>
         </Cart>
         <ProductDetail></ProductDetail>

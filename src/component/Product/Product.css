@@ -19,6 +19,8 @@
 .link-style {
   text-decoration: none;
   color: #31287f;
+  /* font-size: 24px; */
+  font-weight: 600;
 }
 .product-info p {
   line-height: 26px;

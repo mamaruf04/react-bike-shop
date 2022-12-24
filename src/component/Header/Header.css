@@ -5,11 +5,18 @@
   padding: 20px;
   /* position: sticky;
   top: 0; */
+  text-decoration: none;
 }
 .nav-item {
   display: flex;
   align-items: center;
   gap: 40px;
+}
+.nav-link {
+  text-decoration: none;
+  color: #31287f;
+  font-size: 18px;
+  font-weight: 600;
 }
 .input-field {
   display: flex;
@@ -33,9 +40,21 @@
 .search-icon {
   cursor: pointer;
 }
+
 .active-link {
   padding: 10px;
   /* background-color: rgb(255, 255, 255); */
   border-bottom: 2px solid rgba(52, 40, 105, 1);
   border-radius: 10%;
+  color: #473889;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+}
+.log-in-out-btn {
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
+  text-decoration: none;
 }
