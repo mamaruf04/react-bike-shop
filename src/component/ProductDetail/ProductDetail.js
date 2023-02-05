@@ -1,46 +1,45 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from "react";
 // import ReactStars from 'react-rating-stars-component';
-import { useParams } from 'react-router-dom';
-import { CartContext } from '../../App';
-import selectProductImg from '../../asset/selectProduct-removebg.png';
-import './ProductDetail.css';
+import { useParams } from "react-router-dom";
+import selectProductImg from "../../asset/selectProduct-removebg.png";
+import Loading from '../Loading/Loading';
+import "./ProductDetail.css";
 
 const ProductDetail = () => {
-  const {productId} = useParams();
+  const [product, setProduct] = useState();
+  const { productId } = useParams();
+  const [loading, setLoading] = useState(true);
 
-  const [addedCart] = useContext(CartContext);
-  
-    const selectedCart = addedCart?.find(
-      (addedCart) => addedCart.id === productId
-    );
+  useEffect(() => {
+    if (productId) {
+      fetch(`https://bike-show-server.vercel.app/product?id=${productId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setProduct(data)
+          setLoading(false);
+        });
+      }  
+  }, [productId]);
 
+  // if (loading) {
+  //   return <Loading></Loading>
+  // }
 
   return (
     <div>
-      {selectedCart ? (
+      {product ? (
         <div className="selected-product">
-          <h1 className="product-title">{selectedCart?.name}</h1>
+          {loading && <Loading></Loading>}
+          <h1 className="product-title">{product?.name}</h1>
           <div className="product-detail">
-            <img
-              className="selected-product-img"
-              src={selectedCart?.img}
-              alt=""
-            />
+            <img className="selected-product-img" src={product?.img} alt="" />
             <div className="selected-product-info">
-              <p>Brand: {selectedCart?.seller}</p>
-              <p>Ratings: {selectedCart?.ratings}</p>
-              {/* <ReactStars
-                {...{
-                  size: 30,
-                  value: parseFloat(`${selectedCart?.ratings}`),
-                  isHalf: true,
-                  edit: false,
-                }}
-              /> */}
-              <p>Total Rating: {selectedCart?.ratingsCount}</p>
-              <p>Unite Price: ${selectedCart?.price}</p>
-              <p>Shipping: ${selectedCart?.shipping}</p>
-              <p>Quantity: {selectedCart?.quantity}</p>
+              <p>Brand: {product?.seller}</p>
+              <p>Ratings: {product?.ratings}</p>
+              <p>Total Rating: {product?.ratingsCount}</p>
+              <p>Unite Price: ${product?.price}</p>
+              <p>Shipping: ${product?.shipping}</p>
+              <p>Quantity: {product?.quantity}</p>
             </div>
           </div>
         </div>

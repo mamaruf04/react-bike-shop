@@ -3,9 +3,9 @@ import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile
 } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
-import Loading from '../../Loading/Loading';
+import Loading from "../../Loading/Loading";
 import "../AccountFormStyle/AccountFormStyle.css";
 
 const Register = () => {
@@ -14,6 +14,9 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
 
   // register
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -24,7 +27,11 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(email, password);
+    createUserWithEmailAndPassword(email, password).then((data) => {
+      if (data.user) {
+        navigate(from, { replace: true });
+      }
+    });
   };
 
   useEffect(() => {
@@ -123,6 +130,7 @@ const Register = () => {
               <input type="submit" value="Register"></input>
             </div>
             {loading && <Loading></Loading>}
+            {error && <p>{error.message}</p>}
           </form>
           <p className="toggle">
             Already have an account? <Link to="/login">Login</Link>

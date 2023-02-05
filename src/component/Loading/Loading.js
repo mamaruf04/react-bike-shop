@@ -2,14 +2,14 @@ import React from "react";
 import "./Loading.css";
 const Loading = () => {
   return (
-    <div className="warper-container">
-      <div className="Wrapper">
-        <span className="dot"></span>
-        <span className="dot"></span>
-        <span className="dot"></span>
-        <span className="dot"></span>
+    <section className="loading">
+      <div className="loader">
+        <div className="upper ball"></div>
+        <div className="right ball"></div>
+        <div className="lower ball"></div>
+        <div className="left ball"></div>
       </div>
-    </div>
+    </section>
   );
 };
 

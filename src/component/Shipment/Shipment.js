@@ -1,19 +1,39 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import "../Accounts/AccountFormStyle/AccountFormStyle.css";
 
 const Shipment = () => {
   const [user] = useAuthState(auth);
   const [displayName, setDisplayName] = useState("");
-  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const shipping = { displayName, email, address, phoneNumber };
+    const email = e.target.email.value;
+    const cartItem = JSON.parse(localStorage.getItem('shoppingCart'));
+    const shipping = { displayName, email, address, phoneNumber, cartItem };
+    localStorage.removeItem("shoppingCart");
     console.log(shipping);
+
+      fetch("https://bike-show-server.vercel.app/orders",{
+        method: "POST",
+        headers: {
+          'content-type' : 'application/json',
+        },
+        body: JSON.stringify(shipping)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.acknowledged){
+          alert('order confirm successfully!');
+          navigate('/order')
+        } 
+      })
   };
 
   return (
@@ -32,86 +52,43 @@ const Shipment = () => {
                   required
                 ></input>
               </div>
-              {/* <div className="input-box">
-                <span className="details">Username</span>
-                <input
-                  type="text"
-                  placeholder="Enter your username"
-                  required
-                ></input>
-              </div> */}
+            
               <div className="input-box">
                 <span className="details">Email</span>
                 <input
+                name="email"
                   style={{ color: "dimgray" }}
                   value={user?.email}
                   readOnly
                   type="text"
                   placeholder="Enter your email"
-                  required
                 ></input>
               </div>
 
               <div className="input-box">
                 <span className="details">Address</span>
                 <input
-                  onBlur={(e) => setAddress(e.target.value)}
+                  onChange={(e) => setAddress(e.target.value)}
                   type="text"
                   placeholder="Enter your Address"
                   required
                 ></input>
               </div>
-              {/* <div className="input-box">
-                <span className="details">Confirm Password</span>
-                <input
-                  onBlur={(e) => setConfirmPassword(e.target.value)}
-                  type="password"
-                  placeholder="Confirm your password"
-                  required
-                ></input>
-              </div> */}
+    
               <div className="input-box">
                 <span className="details">Phone Number</span>
                 <input
-                  onBlur={(e) => setPhoneNumber(e.target.value)}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                   type="number"
                   placeholder="Enter your number"
                   required
                 ></input>
               </div>
             </div>
-            {/* <div className="gender-details">
-              <input type="radio" name="gender" id="dot-1"></input>
-              <input type="radio" name="gender" id="dot-2"></input>
-              <input type="radio" name="gender" id="dot-3"></input>
-              <span className="gender-title">Gender</span>
-              <div className="category">
-                <label for="dot-1">
-                  <span className="dot one"></span>
-                  <span className="gender">Male</span>
-                </label>
-                <label for="dot-2">
-                  <span className="dot two"></span>
-                  <span className="gender">Female</span>
-                </label>
-                <label for="dot-3">
-                  <span className="dot three"></span>
-                  <span className="gender">Prefer not to say</span>
-                </label>
-              </div>
-            </div> */}
             <div className="button">
               <input type="submit" value="Add Shipping"></input>
             </div>
-            {/* {loading && <Loading></Loading>} */}
           </form>
-          {/* <p className="toggle">
-            Already have an account? <Link to="/login">Login</Link>
-          </p>
-          <p className="condition-warning">
-            By continuing, you agree to our <Link to="#">Terms of Service</Link>
-            . Read our <Link to="#">Privacy Policy</Link>.
-          </p> */}
         </div>
       </div>
     </div>

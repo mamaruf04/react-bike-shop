@@ -5,9 +5,11 @@ const useProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(()=>{
-        fetch('products.json')
-        .then(res => res.json())
-        .then(data => setProducts(data))
+        fetch("https://bike-show-server.vercel.app/products")
+          .then((res) => res.json())
+          .then((data) => {
+            setProducts(data?.products);
+        });
     },[])
 
     return [products,setProducts];

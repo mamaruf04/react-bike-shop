@@ -44,3 +44,25 @@
   border-radius: 10px;
   border: 2px solid rgb(192, 204, 247);
 }
+
+@media screen and (max-width: 688px) {
+  .selected-product {
+    padding: 10px;
+    width: 350px;
+  }
+  .product-detail {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+  .product-title {
+    font-size: 14px;
+  }
+  .add-product-img {
+    width: 200px;
+  }
+  .selected-product-img {
+    width: 250px;
+    height: 250px;
+  }
+}

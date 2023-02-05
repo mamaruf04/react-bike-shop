@@ -1,4 +1,4 @@
-.nav-bar {
+.nav-bar-1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,6 +6,9 @@
   /* position: sticky;
   top: 0; */
   text-decoration: none;
+}
+.nav-bar-2 {
+  display: none;
 }
 .nav-item {
   display: flex;
@@ -57,4 +60,56 @@
   border-radius: 20px;
   color: white;
   text-decoration: none;
+}
+
+/* ------------------------------------------------------------- */
+
+@media screen and (max-width: 688px) {
+  .nav-bar-1 {
+    display: none;
+  }
+  .nav-bar-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    text-decoration: none;
+    position: relative;
+  }
+  .show {
+    display: flex;
+    flex-direction: column;
+    gap: 8px 0;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: rgb(255, 255, 255);
+    padding: 14px 30px;
+    border-radius: 10px;
+    z-index: 1;
+  }
+  .hidden {
+    display: none;
+  }
+  .active-link {
+    padding: 0;
+    border-bottom: none;
+    border-radius: 10%;
+    color: #f71871;
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  .nav-2-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .log-in-out-btn {
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+  }
 }

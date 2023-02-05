@@ -1,15 +1,12 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import addToCartIcon from "../../asset/Add-to-cart.svg";
-import auth from "../../firebase.init";
 import ProductDetail from "../ProductDetail/ProductDetail";
 import "./Product.css";
 
 const Product = ({ product, handelAddToCart }) => {
-  const { id, name, img, price, ratings, stock } = product;
-const [user, loading, error] = useAuthState(auth);
+  const { _id, name, img, price, ratings, stock } = product;
   return (
     <>
       <div className="product">
@@ -17,7 +14,7 @@ const [user, loading, error] = useAuthState(auth);
         <div className="product-info">
           <Link
             className="link-style"
-            to={"productDetail/" + id}
+            to={"productDetail/" + _id}
             element={<ProductDetail></ProductDetail>}
           >
             <h3>{name.length > 20 ? name.slice(0, 20) + "..." : name}</h3>
@@ -28,7 +25,6 @@ const [user, loading, error] = useAuthState(auth);
           <p>
             <b>Stock:</b> {stock}
           </p>
-          {user ? <p>user: {user?.displayName}</p> : ""}
           <ReactStars
             {...{
               size: 24,

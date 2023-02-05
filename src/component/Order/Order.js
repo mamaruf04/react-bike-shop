@@ -11,12 +11,16 @@ const Order = () => {
     const [cart,setCart,dltItem] = useCart(products);
     return (
       <div className="cart-review">
-        <Cart cart={cart} dltItem={dltItem}>
-          <Link to={"/shipment"}>
-            <button>Processed to Shipping</button>
-          </Link>
-        </Cart>
-        <ProductDetail></ProductDetail>
+        <div className='cart-details'>
+          <Cart cart={cart} dltItem={dltItem}>
+            <Link to={"/shipment"}>
+              <button className="action-btn">Processed to Shipping</button>
+            </Link>
+          </Cart>
+        </div>
+        <div className="product-details">
+          <ProductDetail></ProductDetail>
+        </div>
       </div>
     );
 };

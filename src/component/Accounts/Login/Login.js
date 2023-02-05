@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword
@@ -16,23 +16,22 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const location = useLocation();
 
+  const location = useLocation();
   let from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(email, password);
+    signInWithEmailAndPassword(email, password)
+    .then(data => {
+      if(data.user){
+        navigate(from, { replace: true });
+      }
+      
+    })
+    
   };
-
-  // const emailPattern = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
-
-  useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
-    }
-  }, [from, user, navigate]);
 
   return (
     <div className="account-section">
